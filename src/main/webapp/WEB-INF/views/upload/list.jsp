@@ -32,7 +32,7 @@ $(document).ready(function(){
 
 <body>
 <div id="container">
-	<c:url var="actionURL" value='/upload/updateDir'/>
+	<c:url var="actionURL" value='/upload/deleteOrMove'/>
 	<form action="${actionURL}" method="post" enctype="multipart/form-data" class="form-horizontal">
 	<table border="1">
 	<tr>
@@ -71,7 +71,10 @@ $(document).ready(function(){
 			<option value="/images">/이미지</option>
 			<option value="/data">/자료실</option>
 			<option value="/common">/공통</option>
-		</select>로 <input type="submit" value="이동"><p>
+		</select>로
+		<input type="submit" name="listButton" value="이동">
+		<input type="submit" name="listButton" value="삭제">
+		<!-- <button name="listButton" value="삭제">삭제</button><p> -->
 		<a href='<c:url value="/upload/new"/>'>업로드</a>
 		</form>
 </div>

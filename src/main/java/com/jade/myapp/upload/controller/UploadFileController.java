@@ -1,6 +1,9 @@
 package com.jade.myapp.upload.controller;
 
 import java.nio.charset.Charset;
+import java.util.Arrays;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -130,9 +133,20 @@ public class UploadFileController {
 	}
 	
 	@RequestMapping(value = "/upload/updateDir")
-	public String updateDirectory(@RequestParam int fileIds[], @RequestParam String newDir){
+	public String updateDirectory(@RequestParam int fileIds[], @RequestParam String newDir, @RequestParam String delete){
+		logger.info(delete);
 		uploadFileService.updateDirectory(fileIds, newDir);
 		return"redirect:/upload/list";
+	}
+	
+	@RequestMapping(value = "/upload/deleteOrMove", method = RequestMethod.POST)
+	public String deleteOrMove(@RequestParam(required = false)int fileIds[], HttpServletRequest request) {
+		String cmd = (String) request.getParameter("listButton");
+		System.out.println("--");
+		System.out.println(Arrays.toString(fileIds));
+		System.out.println(cmd);
+		System.out.println("--");
+		return "redirect:/upload/list";
 	}
 
 }
